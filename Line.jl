@@ -88,11 +88,13 @@ end
 
 function draw_wireframe(wireframe::Wireframe, camera_transform::CoordinateTransformations.ComposedTransformation, screen_size::Tuple{Int, Int})
     
-    screen_transform = LinearMap([ screen_size[1] 0 ; 0 screen_size[2] ])
-
+    screen_transform = LinearMap([ 
+        screen_size[1]          0 ; 
+             0          screen_size[2] 
+    ])
     transformed_vertices = map(screen_transform ∘ camera_transform, wireframe.vertices)
 
-    print(transformed_vertices)
+    # print(transformed_vertices)
 
     points = []
     for edge in wireframe.edges
